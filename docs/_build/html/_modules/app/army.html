@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>app.army &mdash; bf 1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="bf 1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for app.army</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">app.random_strategy</span> <span class="k">import</span> <span class="n">RandomStrategy</span>
+
+
+<div class="viewcode-block" id="Army"><a class="viewcode-back" href="../../app.html#app.army.Army">[docs]</a><span class="k">class</span> <span class="nc">Army</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class Army.</span>
+
+<span class="sd">    In this class is implemented the attack logic.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="n">RandomStrategy</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_squads</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_strategy</span> <span class="o">=</span> <span class="n">strategy</span>
+
+<div class="viewcode-block" id="Army.get_alive_squads"><a class="viewcode-back" href="../../app.html#app.army.Army.get_alive_squads">[docs]</a>    <span class="k">def</span> <span class="nf">get_alive_squads</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the list of army&#39;s alive squads.</span>
+
+<span class="sd">        :return: alive squads.</span>
+<span class="sd">        :rtype: list.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">alive_squads</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">squad</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_squads</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">squad</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+                <span class="n">alive_squads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">squad</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">alive_squads</span></div>
+
+<div class="viewcode-block" id="Army.take_damage"><a class="viewcode-back" href="../../app.html#app.army.Army.take_damage">[docs]</a>    <span class="k">def</span> <span class="nf">take_damage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">squad</span><span class="p">,</span> <span class="n">dmg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Take damage function.</span>
+
+<span class="sd">        The damage should be taken by specific squad.</span>
+<span class="sd">        :param Squad squad: the squad that is attacked.</span>
+<span class="sd">        :param float dmg: the amount of damage that was dealt.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">squad</span><span class="o">.</span><span class="n">take_damage</span><span class="p">(</span><span class="n">dmg</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Army.attack"><a class="viewcode-back" href="../../app.html#app.army.Army.attack">[docs]</a>    <span class="k">def</span> <span class="nf">attack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enemy</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Attack function</span>
+
+<span class="sd">        While there are squads in attacker&#39;s and defender&#39;s Army, the attacker should choose defender&#39;s squad according to it&#39;s</span>
+<span class="sd">        strategy. Then attacker&#39;s squad damages defender&#39;s squad. If defender&#39;s squad is alive after that, it strikes back.</span>
+<span class="sd">        The function returns when there is only one army left.</span>
+<span class="sd">        :param Army enemy: the defender&#39;s Army.</span>
+<span class="sd">        :return: The return value is used to show log on the screen.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">squad</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_squads</span><span class="p">:</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">squad</span><span class="o">.</span><span class="n">is_alive</span><span class="p">()</span> <span class="ow">or</span> <span class="n">squad</span><span class="o">.</span><span class="n">recharge</span><span class="p">():</span>
+                    <span class="k">continue</span>
+                <span class="n">res</span> <span class="o">+=</span> <span class="s2">&quot;&lt;br&gt;&amp;ensp;Attacker&#39;s army has </span><span class="si">{}</span><span class="s2"> squad(s) left&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_alive_squads</span><span class="p">()))</span>
+                <span class="n">res</span> <span class="o">+=</span> <span class="s2">&quot;&lt;br&gt;&amp;ensp;Defender&#39;s army has </span><span class="si">{}</span><span class="s2"> squad(s) left&lt;br&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">enemy</span><span class="o">.</span><span class="n">get_alive_squads</span><span class="p">()))</span>
+                <span class="n">enemy_squad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_strategy</span><span class="o">.</span><span class="n">chose_squad</span><span class="p">(</span><span class="n">enemy_army</span><span class="o">=</span><span class="n">enemy</span><span class="p">)</span>
+
+                <span class="n">res</span> <span class="o">+=</span> <span class="s2">&quot;&lt;br&gt;Attacker&#39;s </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">squad</span><span class="p">))</span>
+                <span class="n">res</span> <span class="o">+=</span> <span class="s2">&quot;&lt;br&gt;Defender&#39;s </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">enemy_squad</span><span class="p">))</span>
+
+                <span class="n">dmg</span> <span class="o">=</span> <span class="n">squad</span><span class="o">.</span><span class="n">attack</span><span class="p">()</span>
+                <span class="n">res</span> <span class="o">+=</span><span class="s2">&quot;&lt;br&gt;Attacker&#39;s dmg = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dmg</span><span class="p">)</span>
+                <span class="n">enemy</span><span class="o">.</span><span class="n">take_damage</span><span class="p">(</span><span class="n">enemy_squad</span><span class="p">,</span> <span class="n">dmg</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">enemy_squad</span><span class="o">.</span><span class="n">is_alive</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">enemy_squad</span><span class="o">.</span><span class="n">recharge</span><span class="p">():</span>
+                    <span class="n">return_dmg</span> <span class="o">=</span> <span class="n">enemy_squad</span><span class="o">.</span><span class="n">attack</span><span class="p">()</span>
+                    <span class="n">res</span> <span class="o">+=</span> <span class="s2">&quot;&lt;br&gt;Defender&#39;s dmg = </span><span class="si">{}</span><span class="s2">&lt;br&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">return_dmg</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">take_damage</span><span class="p">(</span><span class="n">squad</span><span class="p">,</span> <span class="n">return_dmg</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">squad</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+                        <span class="n">res</span> <span class="o">+=</span> <span class="s2">&quot;&lt;br&gt;&amp;ensp;ATTACKER&#39;S SQUAD DIES!&quot;</span>
+                <span class="k">elif</span> <span class="ow">not</span> <span class="n">enemy_squad</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+                    <span class="n">res</span> <span class="o">+=</span> <span class="s2">&quot;&lt;br&gt;&amp;ensp;DEFENDER&#39;S SQUAD DIES!</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">res</span> <span class="o">+=</span> <span class="s2">&quot;&lt;br&gt;Defender is charging&quot;</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_alive_squads</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">+=</span> <span class="s2">&quot;&lt;br&gt;&amp;ensp;Defender wins</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="k">break</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">enemy</span><span class="o">.</span><span class="n">get_alive_squads</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">+=</span> <span class="s2">&quot;&lt;br&gt;&amp;ensp;Attacker wins</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="k">break</span>
+
+        <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="Army.add_group"><a class="viewcode-back" href="../../app.html#app.army.Army.add_group">[docs]</a>    <span class="k">def</span> <span class="nf">add_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Function that adds group to army.</span>
+
+<span class="sd">        At this moment there is only one available group type - Squad.</span>
+<span class="sd">        :param group: At this moment it is Squad that should be added to army&#39;s squads.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_squads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Army.is_alive"><a class="viewcode-back" href="../../app.html#app.army.Army.is_alive">[docs]</a>    <span class="k">def</span> <span class="nf">is_alive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Function that checks if Army is alive.</span>
+
+<span class="sd">        :return: True if it&#39;s alive, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_alive_squads</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Army.get_strategy"><a class="viewcode-back" href="../../app.html#app.army.Army.get_strategy">[docs]</a>    <span class="k">def</span> <span class="nf">get_strategy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_strategy</span><span class="o">.</span><span class="n">__name__</span></div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        String representation of the object.</span>
+
+<span class="sd">        :return: string that is shown when str, print or format are called with Army as parameter.</span>
+<span class="sd">        :rtype: str.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">squads</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_alive_squads</span><span class="p">()</span>
+        <span class="n">squads</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">squad</span><span class="p">)</span> <span class="k">for</span> <span class="n">squad</span> <span class="ow">in</span> <span class="n">squads</span><span class="p">])</span>
+        <span class="k">return</span> <span class="s1">&#39;Army with </span><span class="si">{}</span><span class="s1"> units: </span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_alive_squads</span><span class="p">()),</span> <span class="n">squads</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, kira.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

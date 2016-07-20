@@ -1,0 +1,744 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>app package &mdash; bf 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="bf 1 documentation" href="index.html" />
+    <link rel="prev" title="Welcome to bf’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="app-package">
+<h1>app package<a class="headerlink" href="#app-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-app.abstract_strategy">
+<span id="app-abstract-strategy-module"></span><h2>app.abstract_strategy module<a class="headerlink" href="#module-app.abstract_strategy" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.abstract_strategy.AbstractStrategy">
+<em class="property">class </em><code class="descclassname">app.abstract_strategy.</code><code class="descname">AbstractStrategy</code><a class="reference internal" href="_modules/app/abstract_strategy.html#AbstractStrategy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.abstract_strategy.AbstractStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="app.abstract_strategy.AbstractStrategy.chose_squad">
+<code class="descname">chose_squad</code><span class="sig-paren">(</span><em>enemy_army</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/abstract_strategy.html#AbstractStrategy.chose_squad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.abstract_strategy.AbstractStrategy.chose_squad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.army">
+<span id="app-army-module"></span><h2>app.army module<a class="headerlink" href="#module-app.army" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.army.Army">
+<em class="property">class </em><code class="descclassname">app.army.</code><code class="descname">Army</code><span class="sig-paren">(</span><em>strategy=&lt;class 'app.random_strategy.RandomStrategy'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/army.html#Army"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.army.Army" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Class Army.</p>
+<p>In this class is implemented the attack logic.</p>
+<dl class="method">
+<dt id="app.army.Army.add_group">
+<code class="descname">add_group</code><span class="sig-paren">(</span><em>group</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/army.html#Army.add_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.army.Army.add_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that adds group to army.</p>
+<p>At this moment there is only one available group type - Squad.
+:param group: At this moment it is Squad that should be added to army&#8217;s squads.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.army.Army.attack">
+<code class="descname">attack</code><span class="sig-paren">(</span><em>enemy</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/army.html#Army.attack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.army.Army.attack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attack function</p>
+<p>While there are squads in attacker&#8217;s and defender&#8217;s Army, the attacker should choose defender&#8217;s squad according to it&#8217;s
+strategy. Then attacker&#8217;s squad damages defender&#8217;s squad. If defender&#8217;s squad is alive after that, it strikes back.
+The function returns when there is only one army left.
+:param Army enemy: the defender&#8217;s Army.
+:return: The return value is used to show log on the screen.
+:rtype: str</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.army.Army.get_alive_squads">
+<code class="descname">get_alive_squads</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/army.html#Army.get_alive_squads"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.army.Army.get_alive_squads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of army&#8217;s alive squads.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">alive squads.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.army.Army.get_strategy">
+<code class="descname">get_strategy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/army.html#Army.get_strategy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.army.Army.get_strategy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.army.Army.is_alive">
+<code class="descname">is_alive</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/army.html#Army.is_alive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.army.Army.is_alive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that checks if Army is alive.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if it&#8217;s alive, False otherwise.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.army.Army.take_damage">
+<code class="descname">take_damage</code><span class="sig-paren">(</span><em>squad</em>, <em>dmg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/army.html#Army.take_damage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.army.Army.take_damage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take damage function.</p>
+<p>The damage should be taken by specific squad.
+:param Squad squad: the squad that is attacked.
+:param float dmg: the amount of damage that was dealt.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.army_factory">
+<span id="app-army-factory-module"></span><h2>app.army_factory module<a class="headerlink" href="#module-app.army_factory" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.army_factory.ArmyFactory">
+<em class="property">class </em><code class="descclassname">app.army_factory.</code><code class="descname">ArmyFactory</code><a class="reference internal" href="_modules/app/army_factory.html#ArmyFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.army_factory.ArmyFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Class that creates Army objects.</p>
+<dl class="classmethod">
+<dt id="app.army_factory.ArmyFactory.create">
+<em class="property">classmethod </em><code class="descname">create</code><span class="sig-paren">(</span><em>strategy</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/army_factory.html#ArmyFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.army_factory.ArmyFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Army.</p>
+<p>Creates Army object with specific strategy that is passed as parameter.
+:param strategy: the strategy that should use Army to choose squad to attack.
+:return: Army object.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.battle_field">
+<span id="app-battle-field-module"></span><h2>app.battle_field module<a class="headerlink" href="#module-app.battle_field" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.battle_field.Battlefield">
+<em class="property">class </em><code class="descclassname">app.battle_field.</code><code class="descname">Battlefield</code><span class="sig-paren">(</span><em>num_armies</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/battle_field.html#Battlefield"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.battle_field.Battlefield" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Class that implements armies&#8217; battle logic.</p>
+<dl class="method">
+<dt id="app.battle_field.Battlefield.start">
+<code class="descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/battle_field.html#Battlefield.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.battle_field.Battlefield.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function that starts the war.</p>
+<p>While there are more than two armies on battlefield, one army should attack the other. The armies&#8217; selection is random.
+:return::return: The return value is used to show log on the screen.
+:rtype: str</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.constants">
+<span id="app-constants-module"></span><h2>app.constants module<a class="headerlink" href="#module-app.constants" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-app.main">
+<span id="app-main-module"></span><h2>app.main module<a class="headerlink" href="#module-app.main" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="app.main.app">
+<code class="descclassname">app.main.</code><code class="descname">app</code><span class="sig-paren">(</span><em>env</em>, <em>resp_start</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/main.html#app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.main.app" title="Permalink to this definition">¶</a></dt>
+<dd><p>WSGI application.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>env</strong> &#8211; dictionary of environment variables.</li>
+<li><strong>resp_start</strong> &#8211; executable object of response start</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">array of strings</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.main.battle">
+<code class="descclassname">app.main.</code><code class="descname">battle</code><span class="sig-paren">(</span><em>num_armies</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/main.html#battle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.main.battle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that starts the war.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>num_armies</strong> (<em>int</em>) &#8211; the number of armies on the battlefield.</td>
+</tr>
+</tbody>
+</table>
+<p>:return:The return value is used to show log on the screen.
+:rtype: str</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.main.open_f">
+<code class="descclassname">app.main.</code><code class="descname">open_f</code><span class="sig-paren">(</span><em>file</em>, <em>mode='r'</em>, <em>parameter=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/main.html#open_f"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.main.open_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open file function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file</strong> (<em>str</em>) &#8211; path to file or file name</li>
+<li><strong>mode</strong> (<em>str</em>) &#8211; <dl class="docutils">
+<dt>&#8216;r&#8217;   Open text file for reading.  The stream is positioned at the</dt>
+<dd>beginning of the file.</dd>
+<dt>&#8216;r+&#8217;  Open for reading and writing.  The stream is positioned at the</dt>
+<dd>beginning of the file.</dd>
+<dt><a href="#id1"><span class="problematic" id="id2">`</span></a>w&#8217;   Truncate file to zero length or create text file for writing.</dt>
+<dd>The stream is positioned at the beginning of the file.</dd>
+<dt>&#8216;w+&#8217;  Open for reading and writing.  The file is created if it does not</dt>
+<dd>exist, otherwise it is truncated.  The stream is positioned at
+the beginning of the file.</dd>
+<dt>&#8216;a&#8217;   Open for writing.  The file is created if it does not exist.  The</dt>
+<dd>stream is positioned at the end of the file.  Subsequent writes
+to the file will always end up at the then current end of file,
+irrespective of any intervening fseek(3) or similar.</dd>
+<dt>&#8216;a+&#8217;  Open for reading and writing.  The file is created if it does not</dt>
+<dd>exist.  The stream is positioned at the end of the file.  Subse-
+quent writes to the file will always end up at the then current
+end of file, irrespective of any intervening fseek(3) or similar.</dd>
+</dl>
+</li>
+<li><strong>parameter</strong> (<em>str</em>) &#8211; used if it is needed to change the text in file.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">file&#8217;s content.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.random_strategy">
+<span id="app-random-strategy-module"></span><h2>app.random_strategy module<a class="headerlink" href="#module-app.random_strategy" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.random_strategy.RandomStrategy">
+<em class="property">class </em><code class="descclassname">app.random_strategy.</code><code class="descname">RandomStrategy</code><a class="reference internal" href="_modules/app/random_strategy.html#RandomStrategy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.random_strategy.RandomStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#app.abstract_strategy.AbstractStrategy" title="app.abstract_strategy.AbstractStrategy"><code class="xref py py-class docutils literal"><span class="pre">app.abstract_strategy.AbstractStrategy</span></code></a></p>
+<p>Class is used to chose the specific squad in army</p>
+<dl class="classmethod">
+<dt id="app.random_strategy.RandomStrategy.chose_squad">
+<em class="property">classmethod </em><code class="descname">chose_squad</code><span class="sig-paren">(</span><em>enemy_army</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/random_strategy.html#RandomStrategy.chose_squad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.random_strategy.RandomStrategy.chose_squad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.solder">
+<span id="app-solder-module"></span><h2>app.solder module<a class="headerlink" href="#module-app.solder" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.solder.Solder">
+<em class="property">class </em><code class="descclassname">app.solder.</code><code class="descname">Solder</code><a class="reference internal" href="_modules/app/solder.html#Solder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.solder.Solder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#app.unit.Unit" title="app.unit.Unit"><code class="xref py py-class docutils literal"><span class="pre">app.unit.Unit</span></code></a></p>
+<dl class="method">
+<dt id="app.solder.Solder.calc_armor">
+<code class="descname">calc_armor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/solder.html#Solder.calc_armor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.solder.Solder.calc_armor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the armor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the amount of armor to reduce the damage.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.solder.Solder.do_attack">
+<code class="descname">do_attack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/solder.html#Solder.do_attack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.solder.Solder.do_attack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attack func.</p>
+<p>Calculates the attack power of the soldier, increases it&#8217;s experience, sets the recharge.
+:return: result of get_power.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.solder.Solder.get_experience">
+<code class="descname">get_experience</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/solder.html#Solder.get_experience"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.solder.Solder.get_experience" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value of experience.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">solder&#8217;s experience.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.solder.Solder.get_power">
+<code class="descname">get_power</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/solder.html#Solder.get_power"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.solder.Solder.get_power" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the power of the solder.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">attack power.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.solder.Solder.take_damage">
+<code class="descname">take_damage</code><span class="sig-paren">(</span><em>dmg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/solder.html#Solder.take_damage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.solder.Solder.take_damage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduces the health of Solder.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dmg</strong> (<em>float</em>) &#8211; the amount of damage to take.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.solder_factory">
+<span id="app-solder-factory-module"></span><h2>app.solder_factory module<a class="headerlink" href="#module-app.solder_factory" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.solder_factory.SolderFactory">
+<em class="property">class </em><code class="descclassname">app.solder_factory.</code><code class="descname">SolderFactory</code><a class="reference internal" href="_modules/app/solder_factory.html#SolderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.solder_factory.SolderFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Class that creates Solder objects.</p>
+<dl class="classmethod">
+<dt id="app.solder_factory.SolderFactory.create">
+<em class="property">classmethod </em><code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/solder_factory.html#SolderFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.solder_factory.SolderFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Solder.</p>
+<p>Creates Solder object
+:return: Solder object.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.squad">
+<span id="app-squad-module"></span><h2>app.squad module<a class="headerlink" href="#module-app.squad" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.squad.Squad">
+<em class="property">class </em><code class="descclassname">app.squad.</code><code class="descname">Squad</code><a class="reference internal" href="_modules/app/squad.html#Squad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.squad.Squad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="app.squad.Squad.add_unit">
+<code class="descname">add_unit</code><span class="sig-paren">(</span><em>unit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/squad.html#Squad.add_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.squad.Squad.add_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that adds unit to squad.</p>
+<p>At this moment there are two available unit types - Solder and Vehicle.
+:param unit: Solder or Vehicle that should be added to squad&#8217;s units.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.squad.Squad.attack">
+<code class="descname">attack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/squad.html#Squad.attack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.squad.Squad.attack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the attack power of squad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">attack power.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.squad.Squad.get_alive_units">
+<code class="descname">get_alive_units</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/squad.html#Squad.get_alive_units"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.squad.Squad.get_alive_units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of squad&#8217;s alive units.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">alive units.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.squad.Squad.is_alive">
+<code class="descname">is_alive</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/squad.html#Squad.is_alive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.squad.Squad.is_alive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that checks if Squad is alive.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if it&#8217;s alive, False otherwise.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.squad.Squad.recharge">
+<code class="descname">recharge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/squad.html#Squad.recharge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.squad.Squad.recharge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if squad can or can&#8217;t attack due to recharge.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if it&#8217;s recharging, False otherwise.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.squad.Squad.take_damage">
+<code class="descname">take_damage</code><span class="sig-paren">(</span><em>dmg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/squad.html#Squad.take_damage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.squad.Squad.take_damage" title="Permalink to this definition">¶</a></dt>
+<dd><p>The damage that is dealt to squad is spread evenly among it&#8217;s units</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dmg</strong> (<em>float</em>) &#8211; the damage that should be taken by squad.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.squad_factory">
+<span id="app-squad-factory-module"></span><h2>app.squad_factory module<a class="headerlink" href="#module-app.squad_factory" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.squad_factory.SquadFactory">
+<em class="property">class </em><code class="descclassname">app.squad_factory.</code><code class="descname">SquadFactory</code><a class="reference internal" href="_modules/app/squad_factory.html#SquadFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.squad_factory.SquadFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Class that creates Squad objects.</p>
+<dl class="classmethod">
+<dt id="app.squad_factory.SquadFactory.create">
+<em class="property">classmethod </em><code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/squad_factory.html#SquadFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.squad_factory.SquadFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Squad.</p>
+<p>Creates Squad object with random number of units.
+:return: Squad object.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.strongest_strategy">
+<span id="app-strongest-strategy-module"></span><h2>app.strongest_strategy module<a class="headerlink" href="#module-app.strongest_strategy" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.strongest_strategy.StrongestStrategy">
+<em class="property">class </em><code class="descclassname">app.strongest_strategy.</code><code class="descname">StrongestStrategy</code><a class="reference internal" href="_modules/app/strongest_strategy.html#StrongestStrategy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.strongest_strategy.StrongestStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#app.abstract_strategy.AbstractStrategy" title="app.abstract_strategy.AbstractStrategy"><code class="xref py py-class docutils literal"><span class="pre">app.abstract_strategy.AbstractStrategy</span></code></a></p>
+<p>Class is used to chose the specific squad in army.</p>
+<dl class="classmethod">
+<dt id="app.strongest_strategy.StrongestStrategy.chose_squad">
+<em class="property">classmethod </em><code class="descname">chose_squad</code><span class="sig-paren">(</span><em>enemy_army</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/strongest_strategy.html#StrongestStrategy.chose_squad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.strongest_strategy.StrongestStrategy.chose_squad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.unit">
+<span id="app-unit-module"></span><h2>app.unit module<a class="headerlink" href="#module-app.unit" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.unit.Unit">
+<em class="property">class </em><code class="descclassname">app.unit.</code><code class="descname">Unit</code><a class="reference internal" href="_modules/app/unit.html#Unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.unit.Unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Abstract Unit class</p>
+<dl class="method">
+<dt id="app.unit.Unit.calc_armor">
+<code class="descname">calc_armor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/unit.html#Unit.calc_armor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.unit.Unit.calc_armor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.unit.Unit.can_attack">
+<code class="descname">can_attack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/unit.html#Unit.can_attack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.unit.Unit.can_attack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if unit can or can&#8217;t attack due to recharge.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if it can attack, False otherwise.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.unit.Unit.do_attack">
+<code class="descname">do_attack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/unit.html#Unit.do_attack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.unit.Unit.do_attack" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.unit.Unit.get_health">
+<code class="descname">get_health</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/unit.html#Unit.get_health"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.unit.Unit.get_health" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.unit.Unit.get_power">
+<code class="descname">get_power</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/unit.html#Unit.get_power"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.unit.Unit.get_power" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="app.unit.Unit.is_alive">
+<code class="descname">is_alive</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/unit.html#Unit.is_alive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.unit.Unit.is_alive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if unit is alive.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if it is alive, False otherwise.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.unit.Unit.take_damage">
+<code class="descname">take_damage</code><span class="sig-paren">(</span><em>dmg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/unit.html#Unit.take_damage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.unit.Unit.take_damage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.vehicle">
+<span id="app-vehicle-module"></span><h2>app.vehicle module<a class="headerlink" href="#module-app.vehicle" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.vehicle.Vehicle">
+<em class="property">class </em><code class="descclassname">app.vehicle.</code><code class="descname">Vehicle</code><a class="reference internal" href="_modules/app/vehicle.html#Vehicle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.vehicle.Vehicle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#app.unit.Unit" title="app.unit.Unit"><code class="xref py py-class docutils literal"><span class="pre">app.unit.Unit</span></code></a></p>
+<dl class="method">
+<dt id="app.vehicle.Vehicle.add_operator">
+<code class="descname">add_operator</code><span class="sig-paren">(</span><em>operator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/vehicle.html#Vehicle.add_operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.vehicle.Vehicle.add_operator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that adds operator to vehicle.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>operator</strong> &#8211; At this moment operator can only be Solder object.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.vehicle.Vehicle.calc_armor">
+<code class="descname">calc_armor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/vehicle.html#Vehicle.calc_armor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.vehicle.Vehicle.calc_armor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the armor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the amount of armor to reduce the damage.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.vehicle.Vehicle.do_attack">
+<code class="descname">do_attack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/vehicle.html#Vehicle.do_attack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.vehicle.Vehicle.do_attack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attack func</p>
+<p>Calculates the attack power of the vehicle, sets the recharge
+:return: result of get_power</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.vehicle.Vehicle.get_power">
+<code class="descname">get_power</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/vehicle.html#Vehicle.get_power"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.vehicle.Vehicle.get_power" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the power of the vehicle.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">attack power.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">float.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="app.vehicle.Vehicle.take_damage">
+<code class="descname">take_damage</code><span class="sig-paren">(</span><em>dmg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/vehicle.html#Vehicle.take_damage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.vehicle.Vehicle.take_damage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduces the health of vehicle and the healths of it&#8217;s operator&#8217;s.</p>
+<p>Vehicle takes 60% of damage, one operator takes 20%, the other ones - 10%.
+:param float dmg: damage that shoul be taken be vehicle.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.vehicle_factory">
+<span id="app-vehicle-factory-module"></span><h2>app.vehicle_factory module<a class="headerlink" href="#module-app.vehicle_factory" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.vehicle_factory.VehicleFactory">
+<em class="property">class </em><code class="descclassname">app.vehicle_factory.</code><code class="descname">VehicleFactory</code><a class="reference internal" href="_modules/app/vehicle_factory.html#VehicleFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.vehicle_factory.VehicleFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Class that creates Vehicle objects.</p>
+<dl class="classmethod">
+<dt id="app.vehicle_factory.VehicleFactory.create">
+<em class="property">classmethod </em><code class="descname">create</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/vehicle_factory.html#VehicleFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.vehicle_factory.VehicleFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Vehicle.</p>
+<p>Creates Vehicle object with random number of operators.
+:return: Vehicle object.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.weakest_strategy">
+<span id="app-weakest-strategy-module"></span><h2>app.weakest_strategy module<a class="headerlink" href="#module-app.weakest_strategy" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="app.weakest_strategy.WeakestStrategy">
+<em class="property">class </em><code class="descclassname">app.weakest_strategy.</code><code class="descname">WeakestStrategy</code><a class="reference internal" href="_modules/app/weakest_strategy.html#WeakestStrategy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.weakest_strategy.WeakestStrategy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#app.abstract_strategy.AbstractStrategy" title="app.abstract_strategy.AbstractStrategy"><code class="xref py py-class docutils literal"><span class="pre">app.abstract_strategy.AbstractStrategy</span></code></a></p>
+<p>Class is used to chose the specific squad in army</p>
+<dl class="classmethod">
+<dt id="app.weakest_strategy.WeakestStrategy.chose_squad">
+<em class="property">classmethod </em><code class="descname">chose_squad</code><span class="sig-paren">(</span><em>enemy_army</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/weakest_strategy.html#WeakestStrategy.chose_squad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#app.weakest_strategy.WeakestStrategy.chose_squad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-app">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-app" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">app package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-app.abstract_strategy">app.abstract_strategy module</a></li>
+<li><a class="reference internal" href="#module-app.army">app.army module</a></li>
+<li><a class="reference internal" href="#module-app.army_factory">app.army_factory module</a></li>
+<li><a class="reference internal" href="#module-app.battle_field">app.battle_field module</a></li>
+<li><a class="reference internal" href="#module-app.constants">app.constants module</a></li>
+<li><a class="reference internal" href="#module-app.main">app.main module</a></li>
+<li><a class="reference internal" href="#module-app.random_strategy">app.random_strategy module</a></li>
+<li><a class="reference internal" href="#module-app.solder">app.solder module</a></li>
+<li><a class="reference internal" href="#module-app.solder_factory">app.solder_factory module</a></li>
+<li><a class="reference internal" href="#module-app.squad">app.squad module</a></li>
+<li><a class="reference internal" href="#module-app.squad_factory">app.squad_factory module</a></li>
+<li><a class="reference internal" href="#module-app.strongest_strategy">app.strongest_strategy module</a></li>
+<li><a class="reference internal" href="#module-app.unit">app.unit module</a></li>
+<li><a class="reference internal" href="#module-app.vehicle">app.vehicle module</a></li>
+<li><a class="reference internal" href="#module-app.vehicle_factory">app.vehicle_factory module</a></li>
+<li><a class="reference internal" href="#module-app.weakest_strategy">app.weakest_strategy module</a></li>
+<li><a class="reference internal" href="#module-app">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to bf&#8217;s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/app.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, kira.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/app.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
